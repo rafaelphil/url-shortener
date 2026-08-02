@@ -1,12 +1,11 @@
 package com.rafael.urlshortenerbackend.url;
 
+import com.rafael.urlshortenerbackend.url.records.CreateUrlRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -21,5 +20,11 @@ public class UrlController {
         if (url == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(url.getOriginalUrl())).build();
+    }
+
+    @PostMapping
+    public ResponseEntity<String> save(@Valid @RequestBody CreateUrlRequest createUrlRequest) {
+        String code = urlService.createUrl(createUrlRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(code);
     }
 }
