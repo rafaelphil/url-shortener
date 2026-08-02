@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UrlService {
     private final UrlRepository urlRepository;
+
+    public Url findByCode(String code) {
+        return urlRepository.findByCode(code).orElse(null);
+    }
 }
