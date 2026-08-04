@@ -10,3 +10,4 @@ spring:
     hibernate:
       ddl-auto: update
 base-url: ${BASE_URL}
+frontend-url: ${FRONTEND_URL}

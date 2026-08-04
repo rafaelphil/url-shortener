@@ -8,13 +8,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${base-url}")
-    private String baseUrl;
+    @Value("${frontend-url}")
+    private String frontendUrl;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(baseUrl)
+                .allowedOrigins(frontendUrl)
                 .allowedMethods("GET", "POST");
     }
 }
